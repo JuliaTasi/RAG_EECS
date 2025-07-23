@@ -67,6 +67,7 @@ def evaluate_rag_system(rag_system, qa_pairs: List[QAPair], top_k: int = 3) -> D
     
     results = []
     correct_answers = 0
+    retrieval_hits = 0
     total_questions = len(qa_pairs)
     
     for i, qa_pair in enumerate(qa_pairs):
@@ -80,6 +81,11 @@ def evaluate_rag_system(rag_system, qa_pairs: List[QAPair], top_k: int = 3) -> D
             # Calculate exact match
             em_score = exact_match_score(predicted_answer, qa_pair.answer)
             correct_answers += em_score
+
+            # Calculate retrieval hit rate (check if reference URL is in retrieved sources)
+            retrieved_urls = [source.get('url', '') for source in rag_result['sources']]
+            hit = 1 if qa_pair.url in retrieved_urls else 0
+            retrieval_hits += hit
             
             # Store individual result
             result = {
@@ -88,14 +94,17 @@ def evaluate_rag_system(rag_system, qa_pairs: List[QAPair], top_k: int = 3) -> D
                 'reference_answer': qa_pair.answer,
                 'predicted_answer': predicted_answer,
                 'exact_match': em_score,
-                'url': qa_pair.url,
+                'reference_url': qa_pair.url,
+                'retrieved_urls': retrieved_urls,
+                'retrieval_hit': hit,
                 'sources_found': len(rag_result['sources'])
             }
             results.append(result)
             
             # Print progress
-            status = "✓" if em_score == 1 else "✗"
-            logger.info(f"  {status} EM: {em_score} | Ref: '{qa_pair.answer}' | Pred: '{predicted_answer}'")
+            em_status = "✓" if em_score == 1 else "✗"
+            hit_status = "✓" if hit == 1 else "✗"
+            logger.info(f"  EM: {em_status} | Hit: {hit_status} | Ref: '{qa_pair.answer}' | Pred: '{predicted_answer}'")
             
         except Exception as e:
             logger.error(f"Error processing question {qa_pair.id}: {str(e)}")
@@ -105,7 +114,9 @@ def evaluate_rag_system(rag_system, qa_pairs: List[QAPair], top_k: int = 3) -> D
                 'reference_answer': qa_pair.answer,
                 'predicted_answer': "",
                 'exact_match': 0,
-                'url': qa_pair.url,
+                'reference_url': qa_pair.url,
+                'retrieved_urls': [],
+                'retrieval_hit': 0,
                 'sources_found': 0,
                 'error': str(e)
             }
@@ -113,16 +124,20 @@ def evaluate_rag_system(rag_system, qa_pairs: List[QAPair], top_k: int = 3) -> D
     
     # Calculate final metrics
     exact_match_accuracy = correct_answers / total_questions
+    retrieval_hit_rate = retrieval_hits / total_questions
     
     evaluation_results = {
         'exact_match_accuracy': exact_match_accuracy,
+        'retrieval_hit_rate': retrieval_hit_rate,
         'correct_answers': correct_answers,
+        'retrieval_hits': retrieval_hits,
         'total_questions': total_questions,
         'individual_results': results
     }
     
     logger.info(f"Evaluation completed!")
     logger.info(f"Exact Match Accuracy: {exact_match_accuracy:.3f} ({correct_answers}/{total_questions})")
+    logger.info(f"Retrieval Hit Rate: {retrieval_hit_rate:.3f} ({retrieval_hits}/{total_questions})")
     
     return evaluation_results
 
@@ -134,7 +149,9 @@ def print_results(results: Dict):
     
     print(f"\nOVERALL PERFORMANCE:")
     print(f"  Exact Match Accuracy: {results['exact_match_accuracy']:.3f}")
+    print(f"  Retrieval Hit Rate:   {results['retrieval_hit_rate']:.3f}")
     print(f"  Correct Answers: {results['correct_answers']}")
+    print(f"  Retrieval Hits:  {results['retrieval_hits']}")
     print(f"  Total Questions: {results['total_questions']}")
     
     # Show correct answers
@@ -142,18 +159,20 @@ def print_results(results: Dict):
     if correct_results:
         print(f"\nCORRECT ANSWERS ({len(correct_results)}):")
         for result in correct_results:
+            hit_status = "✓" if result['retrieval_hit'] == 1 else "✗"
             print(f"  ✓ [{result['id']}] {result['question'][:60]}...")
-            print(f"    Answer: {result['reference_answer']}")
+            print(f"    Answer: {result['reference_answer']} | Hit: {hit_status}")
     
     # Show incorrect answers
     incorrect_results = [r for r in results['individual_results'] if r['exact_match'] == 0]
     if incorrect_results:
         print(f"\nINCORRECT ANSWERS ({len(incorrect_results)}):")
         for result in incorrect_results:
+            hit_status = "✓" if result['retrieval_hit'] == 1 else "✗"
             print(f"  ✗ [{result['id']}] {result['question'][:60]}...")
             print(f"    Expected: '{result['reference_answer']}'")
             print(f"    Got:      '{result['predicted_answer']}'")
-            print(f"    URL:      {result['url']}")
+            print(f"    Hit: {hit_status} | URL: {result['reference_url']}")
     
     # Show errors if any
     error_results = [r for r in results['individual_results'] if 'error' in r]
@@ -167,47 +186,6 @@ def save_results(results: Dict, output_file: str):
     with open(output_file, 'w', encoding='utf-8') as f:
         json.dump(results, f, indent=2, ensure_ascii=False)
     logger.info(f"Results saved to {output_file}")
-
-def create_sample_qa_file():
-    """Create a sample QA pairs file for testing"""
-    sample_qa_pairs = [
-        {
-            "id": "001",
-            "question": "What does EECS stand for at UC Berkeley?",
-            "answer": "Electrical Engineering and Computer Sciences",
-            "url": "https://eecs.berkeley.edu"
-        },
-        {
-            "id": "002", 
-            "question": "What minor options does Berkeley EECS offer for students pursuing other majors?",
-            "answer": "EECS minor, CS Minor, and EIS Minor",
-            "url": "https://eecs.berkeley.edu/academics/undergraduate/cs-ba"
-        },
-        {
-            "id": "003",
-            "question": "Who received the 2021 EECS Distinguished Alumni Award in Computer Science for groundbreaking work in cryptography?",
-            "answer": "Ralph Merkle",
-            "url": "https://eecs.berkeley.edu/2021/03/2021-distinguished-alumni"
-        },
-        {
-            "id": "004",
-            "question": "Which CS course at Berkeley was named one of the '5 Best CS Classes in the US'?",
-            "answer": "CS61A",
-            "url": "https://eecs.berkeley.edu/academics"
-        },
-        {
-            "id": "005",
-            "question": "Who was the first woman to earn a PhD in electrical engineering at UC Berkeley?",
-            "answer": "Kawthar Zaki",
-            "url": "https://eecs.berkeley.edu/about/history/a-relatively-recent-history-women-doctoral-graduates-in-electrical-engineering-and-computer-sciences-1969-1981"
-        },
-    ]
-    
-    with open('sample_qa_pairs.json', 'w', encoding='utf-8') as f:
-        json.dump(sample_qa_pairs, f, indent=2, ensure_ascii=False)
-    
-    print("Created sample_qa_pairs.json with 3 sample questions")
-    return 'sample_qa_pairs.json'
 
 def run_ablation_study(rag_system, qa_pairs: List[QAPair]):
     """Run ablation study with different top_k values"""

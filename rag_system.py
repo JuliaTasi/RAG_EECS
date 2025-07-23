@@ -7,13 +7,11 @@ from sentence_transformers import SentenceTransformer
 import faiss
 from IPython import embed
 import torch
+import datetime
 import logging
 from dataclasses import dataclass
 import pickle
-<<<<<<< HEAD
 import evaluate
-=======
->>>>>>> ffcb080642a2ccb7a585045b65e7e5b152921918
 
 from models import ModelConfig, GeneratorFactory, MODEL_CONFIGS
 
@@ -288,7 +286,6 @@ class RAGSystem:
             }
         }
     
-<<<<<<< HEAD
     def evaluate_system(self, qa_file_path: str, top_k: int = 3, 
                        save_results_file: str = None, run_ablation: bool = False):
         """Evaluate the RAG system on QA pairs"""
@@ -297,8 +294,7 @@ class RAGSystem:
         
         # Load QA pairs
         if not os.path.exists(qa_file_path):
-            logger.warning(f"QA file '{qa_file_path}' not found. Creating sample file...")
-            qa_file_path = evaluate.create_sample_qa_file()
+            raise ValueError(f"QA file '{qa_file_path}' not found. Creating sample file...")
         
         qa_pairs = evaluate.load_qa_pairs(qa_file_path)
         
@@ -320,8 +316,6 @@ class RAGSystem:
         
         return results
     
-=======
->>>>>>> ffcb080642a2ccb7a585045b65e7e5b152921918
     def save_system(self, save_dir: str):
         """Save the complete system"""
         self.retriever.save_index(save_dir)
@@ -354,15 +348,15 @@ class RAGSystem:
 def main():
     """Example usage of the RAG system"""
     
-<<<<<<< HEAD
     config = MODEL_CONFIGS["medium_balanced"]
-=======
-    config = MODEL_CONFIGS["causal_small"]
->>>>>>> ffcb080642a2ccb7a585045b65e7e5b152921918
     rag = RAGSystem(config)
+
+    config_name = "medium_balanced"
+    timestamp = datetime.datetime.now().strftime("%m%d_%H%M%S")
+    results_filename = f"eval_result/evaluation_results_{config_name}_{timestamp}.json"
     
     # Build system from crawled data
-    crawled_data_path = "eecs_20250606_text_bs_rewritten.jsonl"
+    crawled_data_path = "dataset/eecs_20250606_text_bs_rewritten.jsonl"
     
     if os.path.exists("rag_index/faiss_index.idx"):
         print("Loading existing RAG system...")
@@ -371,14 +365,6 @@ def main():
         print("Building new RAG system...")
         rag.build_system(crawled_data_path)
         rag.save_system("rag_index")
-        
-    # Test with example questions
-<<<<<<< HEAD
-    # test_questions = [
-    #     "Who is the EECS department chair?",
-    #     "Where is the chair's office?", 
-    #     "When was the chair appointed?"
-    # ]
     
     print("\n" + "="*80)
     print("EVALUATION MODE")
@@ -386,31 +372,13 @@ def main():
     
     # Run evaluation on QA pairs
     evaluation_results = rag.evaluate_system(
-        qa_file_path="ucb_eecs_rag_eval_dataset.jsonl",  # Your QA pairs file
+        qa_file_path="dataset/ucb_eecs_rag_eval_dataset.jsonl",  # Your QA pairs file
         top_k=3,
-        save_results_file="evaluation_results.json",
+        save_results_file=results_filename,
         run_ablation=True
     )
     
     print(f"\nEvaluation completed! Check evaluation_results.json for detailed results.")
-=======
-    test_questions = [
-        "Who is the EECS department chair?",
-        "Where is the chair's office?", 
-        "When was the chair appointed?"
-    ]
-    
-    print("\n" + "="*80)
-    print("RAG SYSTEM DEMO")
-    print("="*80)
-        
-    for question in test_questions:
-        print(f"\nQuestion: {question}")
-        result = rag.answer_question(question)
-        print(f"Answer: {result['answer']}")
-        print(f"Sources: {len(result['sources'])} documents")
-        print("-" * 40)
->>>>>>> ffcb080642a2ccb7a585045b65e7e5b152921918
 
 if __name__ == "__main__":
     main()
