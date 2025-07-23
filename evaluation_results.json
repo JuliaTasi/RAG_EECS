@@ -1,0 +1,934 @@
+{
+  "exact_match_accuracy": 0.2524271844660194,
+  "correct_answers": 26,
+  "total_questions": 103,
+  "individual_results": [
+    {
+      "id": "001",
+      "question": "Which university did Dan Klein receive his Ph.D. from?",
+      "reference_answer": "Stanford",
+      "predicted_answer": "Harvard University",
+      "exact_match": 0,
+      "url": "http://www2.eecs.berkeley.edu/Faculty/Homepages/klein.html",
+      "sources_found": 3
+    },
+    {
+      "id": "002",
+      "question": "Which year did Dan Klein receive the Grace Murray Hopper Award?",
+      "reference_answer": "2006",
+      "predicted_answer": "",
+      "exact_match": 0,
+      "url": "http://www2.eecs.berkeley.edu/Faculty/Homepages/klein.html",
+      "sources_found": 3
+    },
+    {
+      "id": "003",
+      "question": "How many GSI hours do Berkeley EECS students need to obtain a doctoral degree?",
+      "reference_answer": "30",
+      "predicted_answer": "30",
+      "exact_match": 1,
+      "url": "https://eecs.berkeley.edu/book/phd/teaching-req",
+      "sources_found": 3
+    },
+    {
+      "id": "004",
+      "question": "What is the office number of Dan Klein?",
+      "reference_answer": "8058 Berkeley Way West",
+      "predicted_answer": "###",
+      "exact_match": 0,
+      "url": "http://www2.eecs.berkeley.edu/Faculty/Homepages/klein.html",
+      "sources_found": 3
+    },
+    {
+      "id": "005",
+      "question": "Which email address should CS Ph.D. students send their Ph.D. Student Review to?",
+      "reference_answer": "grads-cs@berkeley.edu",
+      "predicted_answer": "The staff graduate advisor will then update the department’s database",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/book/phd/review/instructions",
+      "sources_found": 3
+    },
+    {
+      "id": "006",
+      "question": "What is the title of the dissertation of Dan Klein's most recent Ph.D. graduate?",
+      "reference_answer": "Natural Language Explanations of Dataset Patterns",
+      "predicted_answer": "Markerless Motion Capture With Multi-view Structured Light",
+      "exact_match": 0,
+      "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Faculty/klein.html",
+      "sources_found": 3
+    },
+    {
+      "id": "007",
+      "question": "Who is the winner of the Eugene L. Lawler Prize in 2024-25?",
+      "reference_answer": "Joel Cisneros, Garv Goswami, Wael Hijazi, Riley Peterlinz",
+      "predicted_answer": "Joel Cisneros",
+      "exact_match": 0,
+      "url": "https://www2.eecs.berkeley.edu/Students/Awards/11",
+      "sources_found": 3
+    },
+    {
+      "id": "008",
+      "question": "Who was the first tenured Black professor in the University of California system?",
+      "reference_answer": "Joseph Thomas Gier",
+      "predicted_answer": "Joseph Thomas Gier",
+      "exact_match": 1,
+      "url": "https://eecs.berkeley.edu/2019/02/joseph-gier",
+      "sources_found": 3
+    },
+    {
+      "id": "009",
+      "question": "Who was named the CDSS Associate Dean for Undergraduate Studies in May 2021?",
+      "reference_answer": "John DeNero",
+      "predicted_answer": "John DeNero",
+      "exact_match": 1,
+      "url": "https://eecs.berkeley.edu/2021/05/john-denero-named-cdss-associate-dean-for-undergraduate-studies",
+      "sources_found": 3
+    },
+    {
+      "id": "010",
+      "question": "Who was the inaugural Charles and Dianne Giancarlo Teaching Fellow?",
+      "reference_answer": "John DeNero",
+      "predicted_answer": "John DeNero",
+      "exact_match": 1,
+      "url": "https://eecs.berkeley.edu/2017/09/dianne-giancarlo-teaching-fellow",
+      "sources_found": 3
+    },
+    {
+      "id": "011",
+      "question": "What is Dan Klein's email address?",
+      "reference_answer": "klein@cs.berkeley.edu",
+      "predicted_answer": "### Research Areas - Artificial Intelligence (AI) – Natural Language Processing, Computational Linguistics, Machine Learning",
+      "exact_match": 0,
+      "url": "http://www2.eecs.berkeley.edu/Faculty/Homepages/klein.html",
+      "sources_found": 3
+    },
+    {
+      "id": "012",
+      "question": "Who is the EECS Department Chair at UC Berkeley?",
+      "reference_answer": "Claire Tomlin",
+      "predicted_answer": "Gordon Moore",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/people/leadership",
+      "sources_found": 3
+    },
+    {
+      "id": "013",
+      "question": "Who is the CS Division Chair in the EECS department?",
+      "reference_answer": "Jelani Nelson",
+      "predicted_answer": "Prof Claire Tomlin",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/people/leadership",
+      "sources_found": 3
+    },
+    {
+      "id": "014",
+      "question": "Who is the EE Division Chair in Berkeley EECS?",
+      "reference_answer": "Ana Claudia Arias",
+      "predicted_answer": "Prof John Canny",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/people/leadership",
+      "sources_found": 3
+    },
+    {
+      "id": "015",
+      "question": "Which email address should EE Ph.D. students send their Ph.D. Student Review to?",
+      "reference_answer": "grads-ee@berkeley.edu",
+      "predicted_answer": "acg@eecs berkeley edu",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/book/phd/review/instructions",
+      "sources_found": 3
+    },
+    {
+      "id": "016",
+      "question": "What does WICSE stand for?",
+      "reference_answer": "Women in Computer Science and Electrical Engineering",
+      "predicted_answer": "Women in Computer Science and Electrical Engineering",
+      "exact_match": 1,
+      "url": "https://eecs.berkeley.edu/people/staff/faculty-support-staff",
+      "sources_found": 3
+    },
+    {
+      "id": "017",
+      "question": "What does BGESS stand for?",
+      "reference_answer": "Black Graduate Engineering and Science Students",
+      "predicted_answer": "BGESS",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/news/bessa-bgess-celebrate-milestone-anniversaries",
+      "sources_found": 3
+    },
+    {
+      "id": "018",
+      "question": "What does BESSA stand for?",
+      "reference_answer": "Black Engineering and Science Student Association",
+      "predicted_answer": "The Black Engineering and Science Student Association",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/news/bessa-bgess-celebrate-milestone-anniversaries",
+      "sources_found": 3
+    },
+    {
+      "id": "019",
+      "question": "Who unveiled the bronze statue of Joseph Thomas Gier at its dedication ceremony?",
+      "reference_answer": "Dana King",
+      "predicted_answer": "DANA King",
+      "exact_match": 1,
+      "url": "https://eecs.berkeley.edu",
+      "sources_found": 3
+    },
+    {
+      "id": "020",
+      "question": "From which university did John DeNero receive his Ph.D.?",
+      "reference_answer": "University of California, Berkeley",
+      "predicted_answer": "Stanford",
+      "exact_match": 0,
+      "url": "http://www2.eecs.berkeley.edu/Faculty/Homepages/denero.html",
+      "sources_found": 3
+    },
+    {
+      "id": "021",
+      "question": "From which university did Peter Bartlett receive his Ph.D.?",
+      "reference_answer": "University of Queensland",
+      "predicted_answer": "University of Queensland",
+      "exact_match": 1,
+      "url": "http://www2.eecs.berkeley.edu/Faculty/Homepages/bartlett.html",
+      "sources_found": 3
+    },
+    {
+      "id": "022",
+      "question": "From which university did Jennifer Listgarten receive her Ph.D.?",
+      "reference_answer": "University of Toronto",
+      "predicted_answer": "Queen’s University",
+      "exact_match": 0,
+      "url": "http://www2.eecs.berkeley.edu/Faculty/Homepages/listgarten.html",
+      "sources_found": 3
+    },
+    {
+      "id": "023",
+      "question": "From which university did Michael I. Jordan earn his Ph.D.",
+      "reference_answer": "University of California, San Diego",
+      "predicted_answer": "University of California",
+      "exact_match": 0,
+      "url": "http://www2.eecs.berkeley.edu/Faculty/Homepages/jordan.html",
+      "sources_found": 3
+    },
+    {
+      "id": "024",
+      "question": "Which Berkeley EECS alumnus is a Managing Partner of Acorn Campus Ventures?",
+      "reference_answer": "Hsing Kung",
+      "predicted_answer": "John DeLuca",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/2021/03/2021-distinguished-alumni",
+      "sources_found": 3
+    },
+    {
+      "id": "025",
+      "question": "Which Berkeley EECS alumnus is the Chair of Electrical and Systems Engineering at the University of Pennsylvania?",
+      "reference_answer": "George Pappas",
+      "predicted_answer": "David Allstot",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/2021/03/2021-distinguished-alumni",
+      "sources_found": 3
+    },
+    {
+      "id": "026",
+      "question": "Which Berkeley EECS alumnus co-invented public-key cryptography?",
+      "reference_answer": "Ralph Merkle",
+      "predicted_answer": "Ralph Merkle",
+      "exact_match": 1,
+      "url": "https://eecs.berkeley.edu/2021/03/2021-distinguished-alumni",
+      "sources_found": 3
+    },
+    {
+      "id": "027",
+      "question": "Which Berkeley EECS alumnus is the founder and CTO of Cambridge Mobile Telematics?",
+      "reference_answer": "Hari Balakrishnan",
+      "predicted_answer": "Gordon Moore",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/2021/03/2021-distinguished-alumni",
+      "sources_found": 3
+    },
+    {
+      "id": "028",
+      "question": "Which fellowship did Dan Klein receive in 2007?",
+      "reference_answer": "Sloan Research Fellowship",
+      "predicted_answer": "Google PhD Fellowship",
+      "exact_match": 0,
+      "url": "http://www2.eecs.berkeley.edu/Faculty/Homepages/klein.html",
+      "sources_found": 3
+    },
+    {
+      "id": "029",
+      "question": "Which year did Jelani Nelson receive the ACM Eugene L. Lawler Award?",
+      "reference_answer": "2022",
+      "predicted_answer": "2023",
+      "exact_match": 0,
+      "url": "https://www2.eecs.berkeley.edu/Faculty/Awards/acm.html",
+      "sources_found": 3
+    },
+    {
+      "id": "030",
+      "question": "Which year did Raluca Ada Popa receive the Grace Murray Hopper Award?",
+      "reference_answer": "2021",
+      "predicted_answer": "",
+      "exact_match": 0,
+      "url": "https://www2.eecs.berkeley.edu/Faculty/Awards/acm.html",
+      "sources_found": 3
+    },
+    {
+      "id": "031",
+      "question": "Which year did Stuart J. Russell receive the ACM-AAAI Allen Newell Award?",
+      "reference_answer": "2023",
+      "predicted_answer": "",
+      "exact_match": 0,
+      "url": "https://www2.eecs.berkeley.edu/Faculty/Awards/acm.html",
+      "sources_found": 3
+    },
+    {
+      "id": "032",
+      "question": "Who won the ACM Karl V. Karlstrom Outstanding Educator Award in 2025?",
+      "reference_answer": "Dan Garcia, Brian Harvey",
+      "predicted_answer": "Dan Garcia and Brian Harvey",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu",
+      "sources_found": 3
+    },
+    {
+      "id": "033",
+      "question": "Which Berkeley EECS professors won the 2022 Bakar Fellows Spark Award?",
+      "reference_answer": "Dan Klein and Angjoo Kanazawa",
+      "predicted_answer": "Dan Klein and Angjoo Kanazawa",
+      "exact_match": 1,
+      "url": "https://eecs.berkeley.edu/2022/06/dan-klein-and-angjoo-kanazawa-win-2022-bakar-fellows-spark-awards",
+      "sources_found": 3
+    },
+    {
+      "id": "034",
+      "question": "Which lab won four Best Presentation Awards at IEEE APEC 2025?",
+      "reference_answer": "BPEC",
+      "predicted_answer": "UC Berkeley",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu",
+      "sources_found": 3
+    },
+    {
+      "id": "035",
+      "question": "Which Berkeley EECS professor won the ISMRM Gold Medal in 2025?",
+      "reference_answer": "Miki Lustig",
+      "predicted_answer": "Miki Lustig",
+      "exact_match": 1,
+      "url": "https://eecs.berkeley.edu",
+      "sources_found": 3
+    },
+    {
+      "id": "036",
+      "question": "Who was the 2024-2025 recipient of the C.V. & Daulat Ramamoorthy Distinguished Research Award?",
+      "reference_answer": "Adwait Godbole",
+      "predicted_answer": "Adwait Godbole",
+      "exact_match": 1,
+      "url": "https://www2.eecs.berkeley.edu/Students/Awards/15",
+      "sources_found": 3
+    },
+    {
+      "id": "037",
+      "question": "Who was the 2023-2024 recipient of the Lotfi A. Zadeh Prize?",
+      "reference_answer": "Kaylo Littlejohn",
+      "predicted_answer": "The first recipient of this award will be presented in 2024",
+      "exact_match": 0,
+      "url": "https://www2.eecs.berkeley.edu/Students/Awards/146",
+      "sources_found": 3
+    },
+    {
+      "id": "038",
+      "question": "Who was the 2022-2023 recipient of the Lotfi A. Zadeh Prize?",
+      "reference_answer": "Sheng Shen",
+      "predicted_answer": "Lotfi Zadeh",
+      "exact_match": 0,
+      "url": "https://www2.eecs.berkeley.edu/Students/Awards/146",
+      "sources_found": 3
+    },
+    {
+      "id": "039",
+      "question": "Who was the 2023-2024 recipient of the C.V. & Daulat Ramamoorthy Distinguished Research Award?",
+      "reference_answer": "James Bartusek",
+      "predicted_answer": "Adwait Godbole",
+      "exact_match": 0,
+      "url": "https://www2.eecs.berkeley.edu/Students/Awards/15",
+      "sources_found": 3
+    },
+    {
+      "id": "040",
+      "question": "Who was the 2021-2022 recipient of the C.V. & Daulat Ramamoorthy Distinguished Research Award?",
+      "reference_answer": "Aviral Kumar",
+      "predicted_answer": "Hari Prasanna Das",
+      "exact_match": 0,
+      "url": "https://www2.eecs.berkeley.edu/Students/Awards/15",
+      "sources_found": 3
+    },
+    {
+      "id": "041",
+      "question": "Who was the 2020-2021 recipient of the C.V. & Daulat Ramamoorthy Distinguished Research Award?",
+      "reference_answer": "Dylan Hadfield-Menell",
+      "predicted_answer": "Dylan Hadfield-Menell",
+      "exact_match": 1,
+      "url": "https://www2.eecs.berkeley.edu/Students/Awards/15",
+      "sources_found": 3
+    },
+    {
+      "id": "042",
+      "question": "Who was the 2016-2017 recipient of the C.V. & Daulat Ramamoorthy Distinguished Research Award?",
+      "reference_answer": "Chelsea Finn",
+      "predicted_answer": "Lingqi Yan",
+      "exact_match": 0,
+      "url": "https://www2.eecs.berkeley.edu/Students/Awards/15",
+      "sources_found": 3
+    },
+    {
+      "id": "043",
+      "question": "Who was the 2017-2018 recipient of the C.V. & Daulat Ramamoorthy Distinguished Research Award?",
+      "reference_answer": "Lingqi Yan",
+      "predicted_answer": "Daniel Fremont",
+      "exact_match": 0,
+      "url": "https://www2.eecs.berkeley.edu/Students/Awards/15",
+      "sources_found": 3
+    },
+    {
+      "id": "044",
+      "question": "Which Berkeley EECS faculty member received the ACM Distinguished Service Award in 2020?",
+      "reference_answer": "Jennifer Chayes",
+      "predicted_answer": "Wenshuo Guo",
+      "exact_match": 0,
+      "url": "https://www2.eecs.berkeley.edu/Faculty/Awards/acm.html",
+      "sources_found": 3
+    },
+    {
+      "id": "045",
+      "question": "Which Berkeley EECS faculty member received the ACM Distinguished Educator Award in 2016?",
+      "reference_answer": "Michael J. Clancy",
+      "predicted_answer": "James A. Schoening",
+      "exact_match": 0,
+      "url": "https://www2.eecs.berkeley.edu/Faculty/Awards/acm.html",
+      "sources_found": 3
+    },
+    {
+      "id": "046",
+      "question": "Which Berkeley EECS alumnus won the ACM Doctoral Dissertation Award in 2006?",
+      "reference_answer": "Ren Ng",
+      "predicted_answer": "Matei Zaharia",
+      "exact_match": 0,
+      "url": "https://www2.eecs.berkeley.edu/Faculty/Awards/acm.html",
+      "sources_found": 3
+    },
+    {
+      "id": "047",
+      "question": "Which Berkeley EECS professor won the ACM A.M. Turing Award in 2017?",
+      "reference_answer": "David A. Patterson",
+      "predicted_answer": "David Patterson",
+      "exact_match": 0,
+      "url": "https://www2.eecs.berkeley.edu/Faculty/Awards/acm.html",
+      "sources_found": 3
+    },
+    {
+      "id": "048",
+      "question": "How many active faculty members are there in Berkeley EECS?",
+      "reference_answer": "Over 250",
+      "predicted_answer": "One",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/about/by-the-numbers",
+      "sources_found": 3
+    },
+    {
+      "id": "049",
+      "question": "How many ACM A.M. Turing Awards have Berkeley EECS faculty received?",
+      "reference_answer": "6",
+      "predicted_answer": "six",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/about/by-the-numbers",
+      "sources_found": 3
+    },
+    {
+      "id": "050",
+      "question": "How many ACM Fellows are among the Berkeley EECS faculty?",
+      "reference_answer": "40",
+      "predicted_answer": "40",
+      "exact_match": 1,
+      "url": "https://eecs.berkeley.edu/about/by-the-numbers",
+      "sources_found": 3
+    },
+    {
+      "id": "051",
+      "question": "How many IEEE Fellows are among the Berkeley EECS faculty?",
+      "reference_answer": "71",
+      "predicted_answer": "71",
+      "exact_match": 1,
+      "url": "https://eecs.berkeley.edu/about/by-the-numbers",
+      "sources_found": 3
+    },
+    {
+      "id": "052",
+      "question": "How many members of the National Academy of Engineering are on the Berkeley EECS faculty?",
+      "reference_answer": "32",
+      "predicted_answer": "32",
+      "exact_match": 1,
+      "url": "https://eecs.berkeley.edu/about/by-the-numbers",
+      "sources_found": 3
+    },
+    {
+      "id": "053",
+      "question": "How many members of the National Academy of Sciences are on the Berkeley EECS faculty?",
+      "reference_answer": "14",
+      "predicted_answer": "37",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/about/by-the-numbers",
+      "sources_found": 3
+    },
+    {
+      "id": "054",
+      "question": "How many AAAS Fellows (American Association for the Advancement of Science) are among Berkeley EECS faculty?",
+      "reference_answer": "21",
+      "predicted_answer": "21",
+      "exact_match": 1,
+      "url": "https://eecs.berkeley.edu/about/by-the-numbers",
+      "sources_found": 3
+    },
+    {
+      "id": "055",
+      "question": "How many Berkeley EECS faculty are members of the American Academy of Arts and Sciences?",
+      "reference_answer": "23",
+      "predicted_answer": "Over 250",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/about/by-the-numbers",
+      "sources_found": 3
+    },
+    {
+      "id": "056",
+      "question": "How many Sloan Research Fellows have Berkeley EECS faculty held?",
+      "reference_answer": "44",
+      "predicted_answer": "306",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/about/by-the-numbers",
+      "sources_found": 3
+    },
+    {
+      "id": "057",
+      "question": "How many Berkeley EECS faculty have received the Berkeley Citation?",
+      "reference_answer": "18",
+      "predicted_answer": "18",
+      "exact_match": 1,
+      "url": "https://eecs.berkeley.edu/about/by-the-numbers",
+      "sources_found": 3
+    },
+    {
+      "id": "058",
+      "question": "How many MacArthur Fellows are among the Berkeley EECS faculty?",
+      "reference_answer": "2",
+      "predicted_answer": "2",
+      "exact_match": 1,
+      "url": "https://eecs.berkeley.edu/about/by-the-numbers",
+      "sources_found": 3
+    },
+    {
+      "id": "059",
+      "question": "What is the 2025 US News ranking for UC Berkeley's Computer Science graduate program?",
+      "reference_answer": "2",
+      "predicted_answer": "No 1",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/about/by-the-numbers",
+      "sources_found": 3
+    },
+    {
+      "id": "060",
+      "question": "What is the 2025 US News ranking for UC Berkeley's Engineering graduate programs?",
+      "reference_answer": "3",
+      "predicted_answer": "#1",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/about/by-the-numbers",
+      "sources_found": 3
+    },
+    {
+      "id": "061",
+      "question": "What is the 2024 US News ranking for UC Berkeley's Computer Science undergraduate program?",
+      "reference_answer": "2",
+      "predicted_answer": "No 1",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/about/by-the-numbers",
+      "sources_found": 3
+    },
+    {
+      "id": "062",
+      "question": "What is the 2024 US News ranking for UC Berkeley's Data Science undergraduate program?",
+      "reference_answer": "1",
+      "predicted_answer": "No",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/about/by-the-numbers",
+      "sources_found": 3
+    },
+    {
+      "id": "063",
+      "question": "What is the 2024 US News ranking for UC Berkeley's undergraduate engineering programs?",
+      "reference_answer": "3",
+      "predicted_answer": "#1",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/about/by-the-numbers",
+      "sources_found": 3
+    },
+    {
+      "id": "064",
+      "question": "What is the 2024 US News ranking for UC Berkeley's Electrical/Electronic/Communications Engineering undergraduate program?",
+      "reference_answer": "2",
+      "predicted_answer": "No 3",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/about/by-the-numbers",
+      "sources_found": 3
+    },
+    {
+      "id": "065",
+      "question": "What is the 2024 US News ranking for UC Berkeley's Computer Engineering undergraduate program?",
+      "reference_answer": "1",
+      "predicted_answer": "#1",
+      "exact_match": 1,
+      "url": "https://eecs.berkeley.edu/about/by-the-numbers",
+      "sources_found": 3
+    },
+    {
+      "id": "066",
+      "question": "What is UC Berkeley's 2025 Times Higher Education world ranking in Engineering?",
+      "reference_answer": "9",
+      "predicted_answer": "#5",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/about/by-the-numbers",
+      "sources_found": 3
+    },
+    {
+      "id": "067",
+      "question": "What is UC Berkeley's 2025 Times Higher Education world ranking in Computer Science?",
+      "reference_answer": "8",
+      "predicted_answer": "No 1",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/about/by-the-numbers",
+      "sources_found": 3
+    },
+    {
+      "id": "068",
+      "question": "What is UC Berkeley's 2024 QS World University ranking in Electrical & Electronic Engineering?",
+      "reference_answer": "12",
+      "predicted_answer": "No 3",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/about/by-the-numbers",
+      "sources_found": 3
+    },
+    {
+      "id": "069",
+      "question": "What is UC Berkeley's 2024 QS World University ranking in Computer Science & Information Systems?",
+      "reference_answer": "5",
+      "predicted_answer": "No 1",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/about/by-the-numbers",
+      "sources_found": 3
+    },
+    {
+      "id": "070",
+      "question": "How many undergraduate students were enrolled in EECS at Berkeley in Fall 2023?",
+      "reference_answer": "1,720",
+      "predicted_answer": "231",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/about/by-the-numbers",
+      "sources_found": 3
+    },
+    {
+      "id": "071",
+      "question": "How many undergraduate students were enrolled in the L&S Computer Science major at Berkeley in Fall 2023?",
+      "reference_answer": "2,022",
+      "predicted_answer": "0.",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/about/by-the-numbers",
+      "sources_found": 3
+    },
+    {
+      "id": "072",
+      "question": "How many graduate students were enrolled in EECS at Berkeley in Fall 2023?",
+      "reference_answer": "741",
+      "predicted_answer": "0",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/about/by-the-numbers",
+      "sources_found": 3
+    },
+    {
+      "id": "073",
+      "question": "How many undergraduate students were enrolled at UC Berkeley in Fall 2023?",
+      "reference_answer": "33,078",
+      "predicted_answer": "unanswerable",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/about/by-the-numbers",
+      "sources_found": 3
+    },
+    {
+      "id": "074",
+      "question": "How many graduate students were enrolled at UC Berkeley in Fall 2023?",
+      "reference_answer": "12,621",
+      "predicted_answer": "393",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/about/by-the-numbers",
+      "sources_found": 3
+    },
+    {
+      "id": "075",
+      "question": "What percentage of Berkeley EECS undergraduate students were female in Fall 2023?",
+      "reference_answer": "23%",
+      "predicted_answer": "7%",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/about/by-the-numbers",
+      "sources_found": 3
+    },
+    {
+      "id": "076",
+      "question": "What percentage of Berkeley L&S Computer Science undergraduates were female in Fall 2023?",
+      "reference_answer": "27%",
+      "predicted_answer": "28",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/about/by-the-numbers",
+      "sources_found": 3
+    },
+    {
+      "id": "077",
+      "question": "What percentage of Berkeley EECS graduate students were female in Fall 2023?",
+      "reference_answer": "23%",
+      "predicted_answer": "97.2",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/about/by-the-numbers",
+      "sources_found": 3
+    },
+    {
+      "id": "078",
+      "question": "What percentage of UC Berkeley's undergraduate population was female in Fall 2023?",
+      "reference_answer": "55%",
+      "predicted_answer": "29%",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/about/by-the-numbers",
+      "sources_found": 3
+    },
+    {
+      "id": "079",
+      "question": "What percentage of Berkeley EECS undergraduate students were from underrepresented minorities in Fall 2023?",
+      "reference_answer": "14%",
+      "predicted_answer": "8%",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/about/by-the-numbers",
+      "sources_found": 3
+    },
+    {
+      "id": "080",
+      "question": "What percentage of Berkeley L&S CS undergraduates were from underrepresented minorities in Fall 2023?",
+      "reference_answer": "5%",
+      "predicted_answer": "14%",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/about/by-the-numbers",
+      "sources_found": 3
+    },
+    {
+      "id": "081",
+      "question": "What percentage of UC Berkeley undergraduates were from underrepresented minorities in Fall 2023?",
+      "reference_answer": "25%",
+      "predicted_answer": "31%",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/about/by-the-numbers",
+      "sources_found": 3
+    },
+    {
+      "id": "082",
+      "question": "What percentage of Berkeley EECS graduate students were international in Fall 2023?",
+      "reference_answer": "48%",
+      "predicted_answer": "42.5",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/about/by-the-numbers",
+      "sources_found": 3
+    },
+    {
+      "id": "083",
+      "question": "What percentage of Berkeley EECS graduate students were domestic non-residents in Fall 2023?",
+      "reference_answer": "9%",
+      "predicted_answer": "8%",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/about/by-the-numbers",
+      "sources_found": 3
+    },
+    {
+      "id": "084",
+      "question": "What percentage of Berkeley L&S CS undergraduates were international students in Fall 2023?",
+      "reference_answer": "22%",
+      "predicted_answer": "37%",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/about/by-the-numbers",
+      "sources_found": 3
+    },
+    {
+      "id": "085",
+      "question": "Which Berkeley EECS alumna was the first female recipient of the EECS Distinguished Alumni Award?",
+      "reference_answer": "Paula Hawthorn",
+      "predicted_answer": "Arlene Cole-Rhodes",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/about/history/women",
+      "sources_found": 3
+    },
+    {
+      "id": "086",
+      "question": "Which Berkeley EECS alumna was the first woman to be named President of University College Dublin?",
+      "reference_answer": "Orla Feely",
+      "predicted_answer": "Orla Feely",
+      "exact_match": 1,
+      "url": "https://eecs.berkeley.edu/news/university-college-dublin-names-eecs-alumna-president/",
+      "sources_found": 3
+    },
+    {
+      "id": "087",
+      "question": "Which Berkeley EECS professor was elected as a Fellow of the Royal Society in 2025?",
+      "reference_answer": "Stuart Russell",
+      "predicted_answer": "Stuart Russell",
+      "exact_match": 1,
+      "url": "https://eecs.berkeley.edu/news/stuart-russell-elected-as-fellow-of-the-royal-society/",
+      "sources_found": 3
+    },
+    {
+      "id": "088",
+      "question": "Which incoming Berkeley EECS faculty member received an honorable mention for the ACM Doctoral Dissertation Award?",
+      "reference_answer": "Sewon Min",
+      "predicted_answer": "Joseph Thomas Gier",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/news/sewon-min-receives-honorable-mention-for-acm-doctoral-dissertation-award/",
+      "sources_found": 3
+    },
+    {
+      "id": "089",
+      "question": "Which EECS graduate student was awarded a 2025 Paul & Daisy Soros Fellowship for New Americans?",
+      "reference_answer": "Syed Tahmid Mahbub",
+      "predicted_answer": "Syed Tahmid Mahbub",
+      "exact_match": 1,
+      "url": "https://eecs.berkeley.edu/news/graduate-student-syed-tahmid-mahbub-awarded-paul-daisy-soros-fellowship/",
+      "sources_found": 3
+    },
+    {
+      "id": "090",
+      "question": "Which Berkeley EECS Professor Emeritus was selected to receive the IEEE Circuits and Systems Society’s John Choma Education Award in 2025?",
+      "reference_answer": "Jan Rabaey",
+      "predicted_answer": "Jan Rabaey",
+      "exact_match": 1,
+      "url": "https://eecs.berkeley.edu/news/jan-rabaey-awarded-john-choma-education-award/",
+      "sources_found": 3
+    },
+    {
+      "id": "091",
+      "question": "Who was the first African American student to earn a B.S. in Electrical Engineering at UC Berkeley?",
+      "reference_answer": "Edmund “Ed” Bussey",
+      "predicted_answer": "Edmund Bussey (1922–2016) was the first African American, according to available records, to graduate with a B S in electrical engineering in 1949",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/2025/02/edmund-bussey-the-first-black-bachelor-of-science-graduate-of-electrical-engineering-at-uc-berkeley/",
+      "sources_found": 3
+    },
+    {
+      "id": "092",
+      "question": "In what year were the Electrical Engineering and Computer Science departments merged to form the EECS department at UC Berkeley?",
+      "reference_answer": "1973",
+      "predicted_answer": "",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/about/history/",
+      "sources_found": 3
+    },
+    {
+      "id": "093",
+      "question": "What electrical safety device, now required in home kitchens and bathrooms, was invented at Berkeley EECS?",
+      "reference_answer": "Ground-fault interrupter (GFI)",
+      "predicted_answer": "ground-fault interrupter",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/about/history/",
+      "sources_found": 3
+    },
+    {
+      "id": "094",
+      "question": "Which Berkeley EECS professor led the development of the SPICE circuit simulator in the 1970s?",
+      "reference_answer": "Donald O. Pederson",
+      "predicted_answer": "Donald Pederson",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/about/history/",
+      "sources_found": 3
+    },
+    {
+      "id": "095",
+      "question": "Who was the first woman to join the Computer Science faculty at UC Berkeley (in 1971)?",
+      "reference_answer": "Susan L. Graham",
+      "predicted_answer": "Susan Graham",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/about/history/first-women/",
+      "sources_found": 3
+    },
+    {
+      "id": "096",
+      "question": "Who became Berkeley’s first female Electrical Engineering professor in 1988?",
+      "reference_answer": "Avideh Zakhor",
+      "predicted_answer": "Avideh Zakhor",
+      "exact_match": 1,
+      "url": "https://eecs.berkeley.edu/about/history/first-women/",
+      "sources_found": 3
+    },
+    {
+      "id": "097",
+      "question": "Which Berkeley EECS alumnus is the creator of the sendmail email system?",
+      "reference_answer": "Eric Allman",
+      "predicted_answer": "Gordon Moore",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/people/alumni/cs-distinguished-alumni/",
+      "sources_found": 3
+    },
+    {
+      "id": "098",
+      "question": "Which Berkeley EECS alumna co-founded VMware?",
+      "reference_answer": "Diane Greene",
+      "predicted_answer": "Diane Greene",
+      "exact_match": 1,
+      "url": "https://eecs.berkeley.edu/people/alumni/cs-distinguished-alumni/",
+      "sources_found": 3
+    },
+    {
+      "id": "099",
+      "question": "Which Berkeley EECS alumnus designed the Pascal programming language and later won an ACM Turing Award?",
+      "reference_answer": "Niklaus Wirth",
+      "predicted_answer": "David Patterson",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/about/by-the-numbers/",
+      "sources_found": 3
+    },
+    {
+      "id": "100",
+      "question": "Which Berkeley EECS alumnus invented the computer mouse?",
+      "reference_answer": "Douglas Engelbart",
+      "predicted_answer": "Eric",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/about/by-the-numbers/",
+      "sources_found": 3
+    },
+    {
+      "id": "101",
+      "question": "Which Berkeley EECS alumnus is one of the co-inventors of public key cryptography (RSA)?",
+      "reference_answer": "Leonard Adleman",
+      "predicted_answer": "Sam Gunn",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/people/alumni/ee-distinguished-alumni/",
+      "sources_found": 3
+    },
+    {
+      "id": "102",
+      "question": "Which Berkeley EECS alumnus co-created the UNIX operating system?",
+      "reference_answer": "Ken Thompson",
+      "predicted_answer": "Ken Thompson",
+      "exact_match": 1,
+      "url": "https://eecs.berkeley.edu/about/by-the-numbers/",
+      "sources_found": 3
+    },
+    {
+      "id": "103",
+      "question": "Which Berkeley EECS alumnus co-founded Sun Microsystems?",
+      "reference_answer": "William (Bill) Joy",
+      "predicted_answer": "Gordon Moore",
+      "exact_match": 0,
+      "url": "https://eecs.berkeley.edu/people/alumni/ee-distinguished-alumni/",
+      "sources_found": 3
+    }
+  ]
+}
