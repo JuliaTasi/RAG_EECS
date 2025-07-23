@@ -10,7 +10,10 @@ import torch
 import logging
 from dataclasses import dataclass
 import pickle
+<<<<<<< HEAD
 import evaluate
+=======
+>>>>>>> ffcb080642a2ccb7a585045b65e7e5b152921918
 
 from models import ModelConfig, GeneratorFactory, MODEL_CONFIGS
 
@@ -285,6 +288,7 @@ class RAGSystem:
             }
         }
     
+<<<<<<< HEAD
     def evaluate_system(self, qa_file_path: str, top_k: int = 3, 
                        save_results_file: str = None, run_ablation: bool = False):
         """Evaluate the RAG system on QA pairs"""
@@ -316,6 +320,8 @@ class RAGSystem:
         
         return results
     
+=======
+>>>>>>> ffcb080642a2ccb7a585045b65e7e5b152921918
     def save_system(self, save_dir: str):
         """Save the complete system"""
         self.retriever.save_index(save_dir)
@@ -348,7 +354,11 @@ class RAGSystem:
 def main():
     """Example usage of the RAG system"""
     
+<<<<<<< HEAD
     config = MODEL_CONFIGS["medium_balanced"]
+=======
+    config = MODEL_CONFIGS["causal_small"]
+>>>>>>> ffcb080642a2ccb7a585045b65e7e5b152921918
     rag = RAGSystem(config)
     
     # Build system from crawled data
@@ -363,6 +373,7 @@ def main():
         rag.save_system("rag_index")
         
     # Test with example questions
+<<<<<<< HEAD
     # test_questions = [
     #     "Who is the EECS department chair?",
     #     "Where is the chair's office?", 
@@ -382,6 +393,24 @@ def main():
     )
     
     print(f"\nEvaluation completed! Check evaluation_results.json for detailed results.")
+=======
+    test_questions = [
+        "Who is the EECS department chair?",
+        "Where is the chair's office?", 
+        "When was the chair appointed?"
+    ]
+    
+    print("\n" + "="*80)
+    print("RAG SYSTEM DEMO")
+    print("="*80)
+        
+    for question in test_questions:
+        print(f"\nQuestion: {question}")
+        result = rag.answer_question(question)
+        print(f"Answer: {result['answer']}")
+        print(f"Sources: {len(result['sources'])} documents")
+        print("-" * 40)
+>>>>>>> ffcb080642a2ccb7a585045b65e7e5b152921918
 
 if __name__ == "__main__":
     main()
