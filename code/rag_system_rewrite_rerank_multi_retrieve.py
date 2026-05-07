@@ -4,20 +4,22 @@ import re
 import numpy as np
 from typing import List, Dict, Tuple, Optional
 from sentence_transformers import SentenceTransformer
+from sentence_transformers import CrossEncoder
 import faiss
 from IPython import embed
 import torch
-import datetime
 import logging
 from dataclasses import dataclass
 import pickle
 import evaluate
-
+from transformers import pipeline
 from models import ModelConfig, GeneratorFactory, MODEL_CONFIGS
+from rank_bm25 import BM25Okapi
 
 # Set up logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
+
 
 @dataclass
 class Document:
@@ -27,6 +29,20 @@ class Document:
     title: str
     url: str
     chunk_index: int
+
+class BM25Retriever:
+    """Simple sparse keyword-based retriever using BM25"""
+
+    def __init__(self, documents: List[Document]):
+        self.documents = documents
+        self.corpus = [doc.content.split() for doc in documents]
+        self.bm25 = BM25Okapi(self.corpus)
+
+    def retrieve(self, query: str, top_k: int = 5) -> List[Tuple[Document, float]]:
+        query_tokens = query.split()
+        scores = self.bm25.get_scores(query_tokens)
+        ranked_indices = np.argsort(scores)[::-1][:top_k]
+        return [(self.documents[idx], float(scores[idx])) for idx in ranked_indices]
 
 class DocumentChunker:
     """Handles text chunking for RAG system"""
@@ -221,7 +237,84 @@ class RAGSystem:
         self.retriever = EmbeddingRetriever(config.retriever_model)
         self.generator = GeneratorFactory.create_generator(config.generator_type, config.generator_model)
         self.is_built = False
-    
+        self.reranker = CrossEncoder("cross-encoder/ms-marco-MiniLM-L-6-v2")
+        self.bm25_retriever = None 
+        # self.paraphraser = pipeline("text2text-generation", model="ramsrigouthamg/t5_paraphraser")
+        self.paraphraser = pipeline(
+            "text2text-generation",
+            model="Vamsi/T5_Paraphrase_Paws",
+            tokenizer="Vamsi/T5_Paraphrase_Paws"
+)
+
+
+    def rewrite_and_retrieve(self, question: str, top_k: int = 3) -> Dict:
+        """改寫問題 + 多樣化檢索，聚合重複結果進行回答"""
+        if not self.is_built:
+            raise ValueError("System not built. Call build_system or load_system first.")
+        
+        # Step 1: 問題改寫
+        rewritten = self.rewrite_question(question)
+        rewritten = [question] + rewritten  # 包含原始問題
+
+        logger.info(f"Rewritten queries: {rewritten}")
+
+        # Step 2: 執行每個問法的 top-10 retrieval
+        all_hits = []
+        for q in rewritten:
+            dense_hits = self.retriever.retrieve(q, top_k=10)
+            sparse_hits = self.bm25_retriever.retrieve(q, top_k=10)
+            all_hits.extend(dense_hits + sparse_hits)
+
+        # Step 3: 聚合重複文檔（依據 doc.id）
+        score_map = {}
+        count_map = {}
+
+        for doc, score in all_hits:
+            if doc.id not in score_map:
+                score_map[doc.id] = (doc, score)
+                count_map[doc.id] = 1
+            else:
+                score_map[doc.id] = (doc, max(score_map[doc.id][1], score))
+                count_map[doc.id] += 1
+
+        # Step 4: 根據出現次數排序，取 top-N 進行 rerank
+        candidates = sorted(score_map.values(), key=lambda x: count_map[x[0].id], reverse=True)
+        top_candidates = candidates[:top_k * 3]  # 保留 top-3 * k 筆進行 rerank
+
+        # Step 5: rerank
+        pairs = [(question, doc.content) for doc, _ in top_candidates]
+        rerank_scores = self.reranker.predict(pairs)
+        reranked = sorted(zip(top_candidates, rerank_scores), key=lambda x: x[1], reverse=True)[:top_k]
+
+        # Step 6: 生成回答
+        reranked_docs = [(doc, score) for (doc, _), score in reranked]
+        answer = self.generator.generate_answer(question, reranked_docs, self.config.max_length)
+
+        # Step 7: 建構結果
+        sources = []
+        for doc, score in reranked_docs:
+            sources.append({
+                'title': doc.title,
+                'url': doc.url,
+                'relevance_score': float(score),
+                'content_snippet': doc.content[:200] + "..." if len(doc.content) > 200 else doc.content
+            })
+
+        return {
+            'question': question,
+            'rewritten_queries': rewritten,
+            'answer': answer,
+            'sources': sources,
+            'num_retrieved': len(reranked_docs)
+        }
+
+    def rewrite_question(self, question: str, num_variants: int = 3) -> List[str]:
+        """使用 paraphrasing 模型改寫問題"""
+        prompt = f"paraphrase: {question} </s>"
+        results = self.paraphraser(prompt, max_length=64, num_return_sequences=num_variants, do_sample=True)
+        return [res['generated_text'] for res in results]
+
+
     def build_system(self, crawled_data_path: str):
         """Build the complete RAG system from crawled data"""
         if self.is_built:
@@ -251,34 +344,60 @@ class RAGSystem:
         
         # Build retrieval index
         self.retriever.build_index(documents)
-        
+        self.bm25_retriever = BM25Retriever(documents)
+
         self.is_built = True
         logger.info("RAG system built successfully!")
     
     def answer_question(self, question: str, top_k: int = 3) -> Dict:
-        """Answer a question using the RAG system"""
+        """Answer a question using multi-retriever + reranker in the RAG system"""
         if not self.is_built:
             raise ValueError("System not built. Call build_system first.")
-        
+
         k = top_k or self.config.top_k
-        retrieved_docs = self.retriever.retrieve(question, k)
-        answer = self.generator.generate_answer(question, retrieved_docs, self.config.max_length)
+
+        # 🔹 Step 1: Retrieve from both dense (FAISS) and sparse (BM25)
+        dense_results = self.retriever.retrieve(question, k)
+        sparse_results = self.bm25_retriever.retrieve(question, k)
+
+        # 🔹 Step 2: Merge and deduplicate by doc ID, keep higher score if conflict
+        all_results = dense_results + sparse_results
+        seen_ids = {}
+        for doc, score in all_results:
+            if doc.id not in seen_ids:
+                seen_ids[doc.id] = (doc, score)
+            else:
+                # Keep the higher score
+                if score > seen_ids[doc.id][1]:
+                    seen_ids[doc.id] = (doc, score)
         
-        # Prepare response with sources
+        merged_results = list(seen_ids.values())
+        merged_results = sorted(merged_results, key=lambda x: x[1], reverse=True)[:k * 3]  # 保留前 2k 作 rerank
+
+        # 🔹 Step 3: Rerank top documents using cross-encoder
+        pairs = [(question, doc.content) for doc, _ in merged_results]
+        scores = self.reranker.predict(pairs)
+        reranked = sorted(zip(merged_results, scores), key=lambda x: x[1], reverse=True)
+        reranked_docs = [(doc, score) for (doc, _), score in reranked[:k]]  # Top-k
+
+        # 🔹 Step 4: Generate answer
+        answer = self.generator.generate_answer(question, reranked_docs, self.config.max_length)
+
+        # 🔹 Step 5: Prepare sources metadata
         sources = []
-        for doc, score in retrieved_docs:
+        for doc, score in reranked_docs:
             sources.append({
                 'title': doc.title,
                 'url': doc.url,
                 'relevance_score': float(score),
                 'content_snippet': doc.content[:200] + "..." if len(doc.content) > 200 else doc.content
             })
-        
+
         return {
             'question': question,
             'answer': answer,
             'sources': sources,
-            'num_retrieved': len(retrieved_docs),
+            'num_retrieved': len(reranked_docs),
             'config': {
                 'retriever_model': self.config.retriever_model,
                 'generator_model': self.config.generator_model,
@@ -294,7 +413,8 @@ class RAGSystem:
         
         # Load QA pairs
         if not os.path.exists(qa_file_path):
-            raise ValueError(f"QA file '{qa_file_path}' not found. Creating sample file...")
+            logger.warning(f"QA file '{qa_file_path}' not found. Creating sample file...")
+            qa_file_path = evaluate.create_sample_qa_file()
         
         qa_pairs = evaluate.load_qa_pairs(qa_file_path)
         
@@ -342,6 +462,8 @@ class RAGSystem:
             return
         
         self.retriever.load_index(save_dir)
+        self.bm25_retriever = BM25Retriever(self.retriever.documents)
+
         self.is_built = True
         logger.info(f"RAG system loaded from {save_dir}")
 
@@ -350,13 +472,9 @@ def main():
     
     config = MODEL_CONFIGS["medium_balanced"]
     rag = RAGSystem(config)
-
-    config_name = "medium_balanced"
-    timestamp = datetime.datetime.now().strftime("%m%d_%H%M%S")
-    results_filename = f"eval_result/evaluation_results_{config_name}_{timestamp}.json"
     
     # Build system from crawled data
-    crawled_data_path = "dataset/eecs_20250606_text_bs_rewritten.jsonl"
+    crawled_data_path = "eecs_20250606_text_bs_rewritten.jsonl"
     
     if os.path.exists("rag_index/faiss_index.idx"):
         print("Loading existing RAG system...")
@@ -365,20 +483,40 @@ def main():
         print("Building new RAG system...")
         rag.build_system(crawled_data_path)
         rag.save_system("rag_index")
-    
+        
     print("\n" + "="*80)
     print("EVALUATION MODE")
     print("="*80)
     
     # Run evaluation on QA pairs
+    if not os.path.exists("eval"):
+        os.makedirs("eval")
+    
     evaluation_results = rag.evaluate_system(
-        qa_file_path="dataset/ucb_eecs_rag_eval_dataset.jsonl",  # Your QA pairs file
+        qa_file_path="ucb_eecs_rag_eval_dataset.jsonl",  # Your QA pairs file
         top_k=3,
-        save_results_file=results_filename,
+        save_results_file="eval/evaluation_results_rewrite_rerank_multi_retrieve.json",
         run_ablation=True
     )
     
     print(f"\nEvaluation completed! Check evaluation_results.json for detailed results.")
+    test_questions = [
+        "Who is the EECS department chair?",
+        "Where is the chair's office?", 
+        "When was the chair appointed?"
+    ]
+    
+    print("\n" + "="*80)
+    print("RAG SYSTEM DEMO")
+    print("="*80)
+        
+    for question in test_questions:
+        print(f"\nQuestion: {question}")
+        # result = rag.answer_question(question)
+        result = rag.rewrite_and_retrieve(question)
+        print(f"Answer: {result['answer']}")
+        print(f"Sources: {len(result['sources'])} documents")
+        print("-" * 40)
 
 if __name__ == "__main__":
     main()

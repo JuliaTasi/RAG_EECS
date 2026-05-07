@@ -1,0 +1,9 @@
+{
+  "retriever_model": "all-MiniLM-L6-v2",
+  "generator_model": "google/flan-t5-base",
+  "generator_type": "seq2seq",
+  "chunk_size": 500,
+  "overlap": 40,
+  "top_k": 3,
+  "max_length": 150
+}

@@ -1,3 +1,4 @@
+import math
 import torch
 import logging
 from typing import List, Tuple
@@ -14,7 +15,7 @@ class ModelConfig:
     generator_model: str = "google/flan-t5-base"
     generator_type: str = "seq2seq"  # "seq2seq" or "causal"
     chunk_size: int = 400
-    overlap: int = 50
+    overlap: int = math.floor(0.1 * chunk_size)  # 10% overlap
     top_k: int = 3
     max_length: int = 150
 

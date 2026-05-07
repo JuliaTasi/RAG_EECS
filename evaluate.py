@@ -23,7 +23,7 @@ def normalize_answer(answer: str) -> str:
     answer = answer.lower()
     
     # Remove punctuation
-    answer = ''.join(char for char in answer if char not in string.punctuation)
+    # answer = ''.join(char for char in answer if char not in string.punctuation)
     
     # Remove extra whitespace
     answer = ' '.join(answer.split())
